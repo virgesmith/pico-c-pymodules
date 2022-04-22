@@ -49,6 +49,29 @@ Type "help()" for more information.
 >>>
 ```
 
+N.B. python source can be compiled to assembly using the `mpy-cross` cross-compiler, part of the micropython build, e.g:
+
+```sh
+../../micropython/mpy-cross/mpy-cross python/add.py
+```
+
+then copy the resulting `.mpy` file to the device using (e.g.) `rshell` and import it in the usual way.
+
+```
+/mnt/data/dev/rpi-pico/pico-c-pymodules> cp python/add.mpy /pyboard/
+Copying '/mnt/data/dev/rpi-pico/pico-c-pymodules/python/add.mpy' to '/pyboard/add.mpy' ...
+/mnt/data/dev/rpi-pico/pico-c-pymodules> repl
+Entering REPL. Use Control-X to exit.
+>
+MicroPython v1.18-329-g9d7c168bf-dirty on 2022-04-22; Raspberry Pi Pico with RP2040
+Type "help()" for more information.
+>>>
+>>> import add
+>>> add.add(2, 2)
+4
+>>>
+```
+
 ## static
 
 Requires recompilation of micropython. Supports C++. Based on micropython/examples/usercmodule.
